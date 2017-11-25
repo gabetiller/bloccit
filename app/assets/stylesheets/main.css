@@ -1,0 +1,41 @@
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+a {
+  color: black;
+}
+
+body {
+    background-color: orangered;
+    font-family: 'Helvetica';
+    margin: 0 0 100px; /* bottom = footer height */
+    min-height: 100%
+}
+
+
+ /* Medium and small screens (640px) */
+ @media (min-width: 40rem) {
+     html { font-size: 112%; }
+
+ /* Large screens (1024px) */
+ @media (min-width: 64rem) {
+     html { font-size: 120%; }
+ }
+
+ /*.clearfix:before,
+ .clearfix:after {
+     content: " ";
+     display: table;
+ }
+
+ .clearfix:after {
+     clear: both;
+ }*/
