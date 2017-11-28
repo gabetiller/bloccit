@@ -14,18 +14,29 @@ posts = Post.all
     post: posts.sample,
     body: RandomData.random_paragraph
   )
+end
 
 unique_post = Post.find_or_create_by!(
   title: 'uniqe title',
   body: 'this is an unique body'
 )
+
 #
 Comment.find_or_create_by!(
   post: unique_post,
   body: 'unique comment'
 )
 
+
+20.times do
+  Advertisement.create!(
+    title: RandomData.random_sentence,
+    copy: RandomData.random_paragraph,
+    price: RandomData.random_number
+  )
+end
+
   puts "Seed Finished"
   puts "#{Post.count} posts created"
   puts "#{Comment.count} comments created"
-end
+  puts "#{Advertisement.count} ads were created"
