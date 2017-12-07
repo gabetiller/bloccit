@@ -16,6 +16,15 @@ topics = Topic.all
   )
 end
 
+30.times do
+  SponsoredPost.create!(
+    topic: topics.sample,
+    title: RandomData.random_sentence,
+    body: RandomData.random_paragraph,
+    price: RandomData.random_number
+  )
+end
+
 posts = Post.all
 #create comments
 100.times do
@@ -26,6 +35,7 @@ posts = Post.all
 end
 
 unique_post = Post.find_or_create_by!(
+  topic: topics.sample,
   title: 'uniqe title',
   body: 'this is an unique body'
 )
@@ -53,6 +63,7 @@ end
 end
 
   puts "Seed Finished"
+  puts "#{SponsoredPost.count} sponsored posts were created"
   puts "#{Topic.count} topics created"
   puts "#{Post.count} posts created"
   puts "#{Comment.count} comments created"
