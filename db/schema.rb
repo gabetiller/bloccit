@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20171207152257) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "topic_id"
+    t.integer "topic_id" #what is this?
     t.index ["topic_id"], name: "index_posts_on_topic_id"
   end
 
