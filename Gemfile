@@ -46,3 +46,6 @@ gem 'bootstrap-sass'
   gem 'shoulda'
  end
  end
+
+ # Used for encrypting passwords
+ gem 'bcrypt'
