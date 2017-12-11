@@ -1,0 +1,14 @@
+<h1>Sign Up Confirmation</h1>
+<div class = "row">
+  <div class = "col-md-4"
+  <h3>Are you sure these values are correct?</h3>
+  <p>email: <%= @user.email %></p>
+  <p>name: <%= @user.name %></p>
+</div>
+</div>
+<div class = "row">
+  <div class = "col-md-4">
+<%= button_to "Yes", {controller: "users", action: "create", params: params}, class: 'btn btn-success' %>
+<%= button_to "No", {:controller => "users", :action => "new"}, class: 'btn btn-failure', :method => :get %>
+  </div>
+</div>
