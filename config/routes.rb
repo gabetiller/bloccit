@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  post 'users/confirm' => 'users#confirm'
   resources :questions
   resources :advertisements
   resources :topics do
