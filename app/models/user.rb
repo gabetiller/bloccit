@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :posts, dependent: :destroy
   before_save { self.email = email.downcase if email.present? }
   # before_save :format_name
   before_save { self.email = email.downcase if email.present? }
@@ -17,13 +18,10 @@ class User < ApplicationRecord
   # #6
   has_secure_password
 
-  # def format_name
-  #   if name
-  #     if name
-  #       split_name = name.split(/\s/).map { |name| name.capitalize }
-  #     end
-  #     self.name = split_name.join(" ")
-  #
-  #   end
-  # end
-end
+  def format_name
+    if name
+        split_name = name.split(/\s/).map { |name| name.capitalize }
+      end
+      self.name = split_name.join(" ")
+    end
+  end
