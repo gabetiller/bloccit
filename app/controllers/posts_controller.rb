@@ -45,6 +45,10 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    if current_user.moderator?
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to [post.topic, post]
+    end
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id])
 
