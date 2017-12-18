@@ -2,7 +2,8 @@ class TopicsController < ApplicationController
 
   before_action :require_sign_in, except: [:index, :show]
 
-  before_action :authorize_user, except: [:index, :show]
+  before_action :authorize_user, except: [:index, :show, :edit, :update]
+
 
 
   def index
@@ -15,9 +16,18 @@ class TopicsController < ApplicationController
 
   def new
     @topic = Topic.new
+    if current_user.moderator? || current_user.member?
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to topics_path
+    end
   end
 
   def create
+    if current_user.moderator? || current_user.member?
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to topics_path
+    end
+
     @topic = Topic.new(topic_params)
 
     if @topic.save
@@ -30,6 +40,10 @@ class TopicsController < ApplicationController
 
   def edit
     @topic = Topic.find(params[:id])
+    if current_user.member?
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to topics_path
+    end
   end
 
   def update
@@ -42,6 +56,10 @@ class TopicsController < ApplicationController
     else
       flash.now[:alert] = "Error saving topic. Please try again."
       render :edit
+    end
+    if current_user.member?
+      flash[:alert] = "You must be an admin to do that."
+      redirect_to topics_path
     end
   end
 
@@ -58,6 +76,7 @@ class TopicsController < ApplicationController
   end
 
   private
+
   def topic_params
     params.require(:topic).permit(:name, :description, :public)
   end

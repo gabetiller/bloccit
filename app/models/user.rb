@@ -10,13 +10,13 @@ class User < ApplicationRecord
 
   validates :email,
   presence: true,
-  uniqueness: { case_sensitive: false },
+  # uniqueness: { case_sensitive: false },
   length: { minimum: 3, maximum: 254 }
 
 
   has_secure_password
 
-  enum role: [:member, :admin]
+  enum role: [:member, :admin, :moderator]
 
   def format_name
     if name
