@@ -17,6 +17,8 @@ RSpec.describe Post, type: :model do
   it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:comments) }
   it { is_expected.to have_many(:votes) }
+  it { is_expected.to have_many(:favorites) }
+
 
 
   it { is_expected.to validate_presence_of(:title) }
@@ -81,13 +83,13 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  describe "#create vote" do
-    it "sets the post up_vote to 1"
-    expect(up_vote).to eq(1)
-  end
-
-  it "calls create_vote when post is created" do
-    post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_sentence, user: user)
-    expect(post).to receive(:create_vote)
-  end
+#   describe "#create vote" do
+#     it "sets the post up_vote to 1"
+#     expect(up_votes).to eq(1)
+#   end
+#
+#   it "calls create_vote when post is created" do
+#     post = topic.posts.new(title: RandomData.random_sentence, body: RandomData.random_sentence, user: user)
+#     expect(post).to receive(:create_vote)
+#   end
 end
