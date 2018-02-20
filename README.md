@@ -16,7 +16,7 @@ Development Tools and Gems include:
 * BCrypt for secure passwords
 * FactoryGirl for test suite success  
 
-Setup:
+## Setup:
 
 Environment variables were set using Figaro and are stored in config/application.yml (ignored by git).
 
