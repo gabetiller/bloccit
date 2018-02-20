@@ -1,11 +1,8 @@
 
-<% favorite = current_user.favorite_for(post) %>
-<% if favorite  %>
-  <%= link_to [post, favorite], class: 'btn btn-danger', method: :delete do %>
-    <i class="glyphicon glyphicon-star-empty"> </i>&nbsp; Unfavorite
-<% end %>
-<% else %>
-  <%= link_to [post, Favorite.new], class: 'btn btn-primary', method: :post do %>
-    <i class="glyphicon glyphicon-star"> </i>&nbsp; Favorite
-  <% end %>
+<%= content_tag :div, class: 'media', id: "favorite-#{favorite.id}" do %>
+<div class= "media">
+<div class= "media-body">
+  <p> <%= favorite.post.body %></p>
+</div>
+</div>
 <% end %>
