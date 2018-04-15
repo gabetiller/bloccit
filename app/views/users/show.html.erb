@@ -1,30 +1,39 @@
 <div class="row">
-   <div class="col-md-8">
-     <div class="media">
-       <br />
-       <% avatar_url = @user.avatar_url(128) %>
-       <% if avatar_url %>
-         <div class="media-left">
-           <%= image_tag avatar_url, class: 'media-object' %>
-         </div>
-       <% end %>
-       <div class="media-body">
-         <h2 class="media-heading"><%= @user.name %></h2>
-         <small>
-           <%= detects_if_user_has_posts(@user) %>,
-           <%= detects_if_user_has_comments(@user) %>
-         </small>
-       </div>
-     </div>
-   </div>
- </div>
- <h2>Posts</h2>
- <%= render @user.posts %>
+  <div class="col-md-8">
+    <div class="media">
+      <br />
+      <% avatar_url = @user.avatar_url(128) %>
+      <% if avatar_url %>
+      <div class="media-left">
+        <%= image_tag avatar_url, class: 'media-object' %>
+      </div>
+      <% end %>
+      <div class="media-body">
+        <h2 class="media-heading"><%= @user.name %></h2>
+        <small>
+          <% if user_has_posts?(@user)%>
+            <%= pluralize(@user.posts.count, 'post') %>
+          <% else %>
+            <%= "#{@user.name} has no posts" %>
+          <% end %>
 
- <h2>Comments</h2>
- <%= render @user.comments %>
+          <% if user_has_comments?(@user) %>
+            <%= "#{@user.name} doesn't have any comments" %>
+          <% else %>
+            <%= pluralize(@user.comments.count, 'comment') %>
+          <% end %>
+        </small>
+      </div>
+    </div>
+  </div>
+</div>
+<h2>Posts</h2>
+<%= render @user.posts %>
 
- <h2>Favorites</h2>
- <% @user.favorited_posts.each do |favorite_post| %>
-     <%= render "posts/post", post: favorite_post %>
- <% end %>
+<h2>Comments</h2>
+<%= render @user.comments %>
+
+<h2>Favorites</h2>
+<% @user.favorited_posts.each do |favorite_post| %>
+<%= render "posts/post", post: favorite_post %>
+<% end %>

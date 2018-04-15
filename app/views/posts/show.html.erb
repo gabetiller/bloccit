@@ -1,5 +1,5 @@
 <div>
-  <%= render partial: 'votes/voting', locals: { post: @post } %> #locals?
+  <%= render partial: 'votes/voting', locals: { post: @post } %>
   <h1>
     <%= @post.title %> <br>
     <small>
@@ -13,7 +13,11 @@
     <p><%= @post.body %></p>
     <div>
       <h3>Comments</h3>
-      <%= render @post.comments %>
+      <% if has_comments?(@post) %>
+        <%= render @post.comments %>
+      <% else %>
+        <h1>"No comments!"</h1>
+      <% end %>
     </div>
     <% if current_user %>
     <%= render 'comments/form', comment: Comment.new, post: @post %>

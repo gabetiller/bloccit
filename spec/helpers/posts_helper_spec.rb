@@ -11,5 +11,18 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe PostsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe ".has_comments?" do
+    it "returns true if a post has comments" do
+      post = create(:post)
+      create(:comment, post: post)
+
+      expect(helper.has_comments?(post)).to eq true
+    end
+
+    it "returns false if a post has no comments" do
+      post = create(:post)
+
+      expect(helper.has_comments?(post)).to eq false
+    end
+  end
 end
